@@ -1,0 +1,7 @@
+shrinkLimit: 1
+testLimit: 10000
+seqLen: 5
+dashboard: false
+checkAsserts: true
+format: text
+coverage: true
