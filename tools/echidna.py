@@ -2,16 +2,23 @@ import os
 import shutil
 
 def run_echidna(p):
-    (filename, contract) = p
+    (filename, contract, extra_args) = p
     coverage = None
     
     cdir = filename.replace("/","_")+".dir"
-    shutil.rmtree(cdir)
+    shutil.rmtree(cdir, ignore_errors=True)
     os.mkdir(cdir)
     os.chdir(cdir)
 
-    cmd = 'echidna-test ../'+filename+' '+contract+' --config ../tools/echidna.yaml > echidna.out 2> echidna.err'
-    print(cmd)
+    config = open("../tools/echidna.yaml","r").read()
+
+    with open("echidna.yaml", "w+", newline='') as f:
+        f.write(config)
+        if (extra_args is not None):
+            f.write(extra_args)
+
+    cmd = 'echidna-test ../'+filename+' '+contract+' --config echidna.yaml > echidna.out 2> echidna.err'
+    #print(cmd)
     os.system(cmd)
     with open("echidna.out", newline='') as f:
         for l in f.readlines():

@@ -46,6 +46,21 @@ def parse_args():
         default=5
     )
 
+    parser.add_argument(
+        "--extra-args",
+        help="Additional arguments for the tool",
+        action="store",
+        type=str,
+    )
+
+    parser.add_argument(
+        "--outfile",
+        help="Write output to a file",
+        action="store",
+        type=str,
+        default="/dev/stdout"
+    )
+
     if len(sys.argv) == 1:
         parser.print_help(sys.stderr)
         sys.exit(1)
@@ -63,11 +78,11 @@ def main():
     contracts = []
     contracts = contracts + (parse_metadata('metadata/cve-info.csv', 'benchmarks/cve'))
     contracts = contracts + (parse_metadata('metadata/zeus-info.csv', 'benchmarks/zeus'))
- 
+
     if args.nsample is not None:
         contracts = contracts[:args.nsample]
 
-    print(contracts)
+    contracts = list(map(lambda p: (p[0], p[1], args.extra_args), contracts))
     data = []
 
     if args.tool == "echidna":
@@ -77,9 +92,12 @@ def main():
         data = p.map(func, contracts)
 
     data = list(filter(lambda x: x[1] is not None, data))
-    print("raw data:", data)
-    coverage = list(map(lambda x: x[1], data))
-    print("mean coverage:", round(mean(coverage),2))
+    with open(args.outfile, "w", newline='') as f:
+        f.write("raw data: "+ str(data))
+        f.write('\n')
+        coverage = list(map(lambda x: x[1], data))
+        f.write("mean coverage:"+ str(round(mean(coverage),2)))
+        f.write('\n')
 
 if __name__ == "__main__":
     main()

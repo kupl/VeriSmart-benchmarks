@@ -1,8 +1,8 @@
 shrinkLimit: 1
-testLimit: 10000
-seqLen: 5
+testLimit: 500000
+seqLen: 100
 dashboard: false
 checkAsserts: true
 format: text
 coverage: true
-cryticArgs: ["--solc-solcs-bin","solc-0.4.24"]
+cryticArgs: ["--solc-solcs-bin","solc"]
