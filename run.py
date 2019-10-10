@@ -2,9 +2,10 @@
 
 import argparse
 import sys
-from csv import reader
 
-from numpy import mean
+from csv             import reader
+from multiprocessing import Pool
+from numpy           import mean
 
 from tools import tool_list, run_echidna
 
@@ -37,6 +38,14 @@ def parse_args():
         type=int
     )
 
+    parser.add_argument(
+        "--procs",
+        help="Number of parallel process to use",
+        action="store",
+        type=int,
+        default=5
+    )
+
     if len(sys.argv) == 1:
         parser.print_help(sys.stderr)
         sys.exit(1)
@@ -58,17 +67,19 @@ def main():
     if args.nsample is not None:
         contracts = contracts[:args.nsample]
 
+    print(contracts)
     data = []
 
-    for (f,c) in contracts:
-        if args.tool == "echidna":
-            coverage = run_echidna(f,c)
-            if coverage is not None:
-                data.append((f,coverage))
+    if args.tool == "echidna":
+        func = run_echidna
 
+    with Pool(args.procs) as p:
+        data = p.map(func, contracts)
+
+    data = list(filter(lambda x: x[1] is not None, data))
     print("raw data:", data)
     coverage = list(map(lambda x: x[1], data))
-    print("mean coverage:", mean(coverage))
+    print("mean coverage:", round(mean(coverage),2))
 
 if __name__ == "__main__":
     main()

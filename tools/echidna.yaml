@@ -5,3 +5,4 @@ dashboard: false
 checkAsserts: true
 format: text
 coverage: true
+cryticArgs: ["--solc-solcs-bin","solc-0.4.24"]
