@@ -5,19 +5,19 @@ def run_echidna(p):
     (filename, contract, extra_args) = p
     coverage = None
     
-    cdir = filename.replace("/","_")+".dir"
+    cdir = "temp/"+filename.replace("/","_")+".dir"
     shutil.rmtree(cdir, ignore_errors=True)
     os.mkdir(cdir)
     os.chdir(cdir)
 
-    config = open("../tools/echidna.yaml","r").read()
+    config = open("../../tools/echidna.yaml","r").read()
 
     with open("echidna.yaml", "w+", newline='') as f:
         f.write(config)
         if (extra_args is not None):
             f.write(extra_args)
 
-    cmd = 'echidna-test ../'+filename+' '+contract+' --config echidna.yaml > echidna.out 2> echidna.err'
+    cmd = 'echidna-test ../../'+filename+' '+contract+' --config echidna.yaml > echidna.out 2> echidna.err'
     #print(cmd)
     os.system(cmd)
     with open("echidna.out", newline='') as f:
@@ -26,5 +26,5 @@ def run_echidna(p):
             if "Unique instructions: " in l:
                 coverage = int(l.split(" ")[2])
     
-    os.chdir('..')
+    os.chdir('../..')
     return (filename, coverage)
