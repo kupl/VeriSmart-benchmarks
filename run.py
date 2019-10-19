@@ -5,7 +5,6 @@ import sys
 
 from csv             import reader
 from multiprocessing import Pool
-from numpy           import mean
 
 from tools import tool_list, run_echidna
 
@@ -93,11 +92,7 @@ def main():
 
     data = list(filter(lambda x: x[1] is not None, data))
     with open(args.outfile, "w", newline='') as f:
-        f.write("raw data: "+ str(data))
-        f.write('\n')
-        coverage = list(map(lambda x: x[1], data))
-        f.write("mean coverage:"+ str(round(mean(coverage),2)))
-        f.write('\n')
+        f.write(str(data))
 
 if __name__ == "__main__":
     main()

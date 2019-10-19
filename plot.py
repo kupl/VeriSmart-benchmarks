@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 
 import argparse
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import sys
 
 from ast             import literal_eval
 from csv             import reader
-from numpy           import mean, arange
+from numpy           import mean, arange, min, max
 
 def parse_args():
     # Create our argument parser
@@ -16,14 +18,14 @@ def parse_args():
     )
 
     # Add arguments
-    parser.add_argument("files", help="XXX", nargs='+')
+    parser.add_argument("files", help="Data files to plot", nargs='+')
 
     parser.add_argument(
         "--outfile",
         help="Write output to a file",
         action="store",
         type=str,
-        default="/dev/stdout"
+        default="out.png"
     )
 
     if len(sys.argv) == 1:
@@ -49,10 +51,13 @@ def main():
         coverage.append(round(mean(cs),2))
 
     print(coverage)
-    #with open(args.outfile, "w", newline='') as f:
+    plt.figure(figsize=(20,10))
+    #plt.rcParams.update({'font.size': 18})
+    xlabels = map(lambda x: x.split('/')[-1].replace(".out", ""), args.files)
     plt.bar(arange(len(coverage)), coverage)
-    plt.xticks(arange(len(coverage)), args.files)
-    plt.show()
+    plt.xticks(arange(len(coverage)), xlabels, rotation=70)
+    plt.ylim([min(coverage)-10,max(coverage)+10])
+    plt.savefig(args.outfile)
 
 if __name__ == "__main__":
     main()

@@ -1,5 +1,6 @@
 import os
 import shutil
+import time
 
 def run_echidna(p):
     (filename, contract, extra_args) = p
@@ -18,8 +19,9 @@ def run_echidna(p):
             f.write(extra_args)
 
     cmd = 'echidna-test ../../'+filename+' '+contract+' --config echidna.yaml > echidna.out 2> echidna.err'
-    #print(cmd)
+    start = time.time()
     os.system(cmd)
+    end = time.time()
     with open("echidna.out", newline='') as f:
         for l in f.readlines():
             l = l.replace('\n','')
@@ -27,4 +29,4 @@ def run_echidna(p):
                 coverage = int(l.split(" ")[2])
     
     os.chdir('../..')
-    return (filename, coverage)
+    return (filename, coverage, end - start)
