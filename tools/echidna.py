@@ -3,10 +3,10 @@ import shutil
 import time
 
 def run_echidna(p):
-    (filename, contract, extra_args) = p
+    (filename, contract, rep, extra_args) = p
     coverage = None
     
-    cdir = "temp/"+filename.replace("/","_")+".dir"
+    cdir = "temp/echidna_"+filename.replace("/","_")+"_"+str(rep)+".dir"
     shutil.rmtree(cdir, ignore_errors=True)
     os.mkdir(cdir)
     os.chdir(cdir)
@@ -29,4 +29,4 @@ def run_echidna(p):
                 coverage = int(l.split(" ")[2])
     
     os.chdir('../..')
-    return (filename, coverage, end - start)
+    return (filename, coverage, rep, end - start)

@@ -46,6 +46,14 @@ def parse_args():
     )
 
     parser.add_argument(
+        "--reps",
+        help="Number of experiment repetitions",
+        action="store",
+        type=int,
+        default=1
+    )
+
+    parser.add_argument(
         "--extra-args",
         help="Additional arguments for the tool",
         action="store",
@@ -81,14 +89,18 @@ def main():
     if args.nsample is not None:
         contracts = contracts[:args.nsample]
 
-    contracts = list(map(lambda p: (p[0], p[1], args.extra_args), contracts))
+    inputs = []
+    for r in range(args.reps):
+        inputs = inputs + list(map(lambda p: (p[0], p[1], r, args.extra_args), contracts))
+
+    print(inputs)
     data = []
 
     if args.tool == "echidna":
         func = run_echidna
 
     with Pool(args.procs) as p:
-        data = p.map(func, contracts)
+        data = p.map(func, inputs)
 
     data = list(filter(lambda x: x[1] is not None, data))
     with open(args.outfile, "w", newline='') as f:
