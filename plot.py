@@ -28,6 +28,20 @@ def parse_args():
         default="out.png"
     )
 
+    parser.add_argument(
+        "--xlabel",
+        help="Label for axis X",
+        action="store",
+        type=str,
+    )
+
+    parser.add_argument(
+        "--ylabel",
+        help="Label for axis Y",
+        action="store",
+        type=str,
+    )
+
     if len(sys.argv) == 1:
         parser.print_help(sys.stderr)
         sys.exit(1)
@@ -57,6 +71,11 @@ def main():
     plt.bar(arange(len(coverage)), coverage)
     plt.xticks(arange(len(coverage)), xlabels, rotation=70)
     plt.ylim([min(coverage)-10,max(coverage)+10])
+    if args.xlabel is not None:
+        plt.xlabel(args.xlabel)
+
+    if args.ylabel is not None:
+        plt.ylabel(args.ylabel)
     plt.savefig(args.outfile)
 
 if __name__ == "__main__":
