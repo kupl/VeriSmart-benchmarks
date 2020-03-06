@@ -10,6 +10,7 @@ def run_echidna(p):
     shutil.rmtree(cdir, ignore_errors=True)
     os.mkdir(cdir)
     os.chdir(cdir)
+    os.mkdir("corpus")
 
     config = open("../../tools/echidna.yaml","r").read()
 
@@ -18,7 +19,7 @@ def run_echidna(p):
         if (extra_args is not None):
             f.write(extra_args)
 
-    cmd = 'echidna-test ../../'+filename+' '+contract+' --config echidna.yaml > echidna.out 2> echidna.err'
+    cmd = 'echidna-test ../../'+filename+' --contract '+contract+' --config echidna.yaml > echidna.out 2> echidna.err'
     start = time.time()
     os.system(cmd)
     end = time.time()
