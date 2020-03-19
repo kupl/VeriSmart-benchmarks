@@ -20,6 +20,13 @@ def parse_metadata(filename, prefix):
             r.append((prefix+'/'+contract_filename, contract_name))
     return r
 
+def parse_contracts(contracts):
+    r = []
+    cs = contracts.split(",")
+    for c in cs:
+        r.append(c.split(":"))
+    return r 
+
 def parse_args():
     # Create our argument parser
     parser = argparse.ArgumentParser(
@@ -61,6 +68,13 @@ def parse_args():
     )
 
     parser.add_argument(
+        "--contracts",
+        help="Manually specify the contracts to use",
+        action="store",
+        type=str
+    )
+
+    parser.add_argument(
         "--outfile",
         help="Write output to a file",
         action="store",
@@ -83,8 +97,12 @@ def main():
         sys.exit(1)
 
     contracts = []
-    contracts = contracts + (parse_metadata('metadata/cve-info.csv', 'benchmarks/cve'))
-    contracts = contracts + (parse_metadata('metadata/zeus-info.csv', 'benchmarks/zeus'))
+    if (args.contracts is None):
+        contracts = contracts + (parse_metadata('metadata/cve-info.csv', 'benchmarks/cve'))
+        contracts = contracts + (parse_metadata('metadata/zeus-info.csv', 'benchmarks/zeus'))
+    else:
+        contracts = parse_contracts(args.contracts)
+    print(contracts)
 
     if args.nsample is not None:
         contracts = contracts[:args.nsample]
