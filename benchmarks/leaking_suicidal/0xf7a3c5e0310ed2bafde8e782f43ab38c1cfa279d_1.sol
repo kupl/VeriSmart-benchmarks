@@ -596,7 +596,7 @@ contract ReynaFoundationCoin is owned {
         uint256 etherAmount = amount * sellPrice/(10**_decimals);
         require(address(this).balance >= etherAmount);   // checks if the contract has enough ether to buy
         _transfer(msg.sender, address(this), amount);           // makes the transfers
-        msg.sender.transfer(etherAmount);  // <XXX_VUL>              // sends ether to the seller. It's important to do this last to avoid recursion attacks
+        msg.sender.transfer(etherAmount);                // sends ether to the seller. It's important to do this last to avoid recursion attacks
     }
     
     

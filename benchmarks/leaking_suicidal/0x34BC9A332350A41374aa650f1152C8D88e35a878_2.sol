@@ -126,7 +126,7 @@ contract GuessTheNumberGame {
     function collectPlayerWinnings() public byPlayer inState(State.PLAYERS_WIN){
         if(guesses[winningNumber].players[msg.sender] == PaidStatus.NOT_PAID){
             guesses[winningNumber].players[msg.sender] = PaidStatus.PAID;
-            msg.sender.transfer(splitJackpot); // <XXX_VUL>
+            msg.sender.transfer(splitJackpot);
         } else revert();
     }
 
