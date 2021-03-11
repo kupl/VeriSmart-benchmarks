@@ -12,7 +12,7 @@ by the authors of [Zeus](http://pages.cpsc.ucalgary.ca/~joel.reardon/blockchain/
 
 * ``benchmarks/leaking_suicidal``: This folder contains 104 Solidity smart contracts with Ether-leaking and Suicidal vulnerabilities. The contracts whose names end with ``_N.sol`` (where ``N`` is one of 1,2,3) are the ones constructed by us (see our [USENIX Security 2021 paper](http://prl.korea.ac.kr/~ssb920/papers/sec21.pdf) for more details). The others come from [SmartBugs repository](https://github.com/smartbugs/smartbugs).
 
-* ``meta``: This folder contains metadata for contracts such as names of main contracts.
+* ``metadata``: This folder contains metadata for contracts such as names of main contracts.
 
 * ``labels``: This folder contains ground truths for CVE-reported vulnerabilities, and Ether-leaking and Suicidal vulnerabilities.
 
