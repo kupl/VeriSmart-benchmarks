@@ -5,12 +5,12 @@ This repository contains dataset that we used for experiments in our paper.
 
 ## Structure of Contents
 * ``benchmarks/cve``: This folder contains 487 Solidity smart contracts reported in CVE.
-The 60 contracts used in our S&P '20 paper are specified in ``labels/cve_labels.csv`` (the column ``SP20``). The deduplicated 443 contracts in our Sec '21 paper are specified in ``metadata/cve-meta.csv`` (the column ``actual_order``). The sampled 300 contracts in Table 2 of our Sec '21 paper are specified in ``labels/cve_labels.csv`` (the column ``SEC21``).
+The 60 contracts used in [our S&P '20 paper](https://arxiv.org/abs/1908.11227) are specified in ``labels/cve_labels.csv`` (the column ``SP20``). The deduplicated 443 contracts in [our Security '21 paper](http://prl.korea.ac.kr/~ssb920/papers/sec21.pdf) are specified in ``metadata/cve-meta.csv`` (the column ``actual_order``). The sampled 300 contracts in Table 2 of [our Security '21 paper](http://prl.korea.ac.kr/~ssb920/papers/sec21.pdf) are specified in ``labels/cve_labels.csv`` (the column ``SEC21``).
 
 * ``benchmarks/zeus``: This folder contains 25 Solidity smart contracts from public dataset provided
 by the authors of [Zeus](http://pages.cpsc.ucalgary.ca/~joel.reardon/blockchain/readings/ndss2018_09-1_Kalra_paper.pdf).
 
-* ``benchmarks/leaking_suicidal``: This folder contains 104 Solidity smart contracts with Ether-leaking and Suicidal vulnerabilities. The contracts whose names end with ``_N.sol`` (where ``N`` is one of 1,2,3) are the ones constructed by us (see our [USENIX Security 2021 paper](http://prl.korea.ac.kr/~ssb920/papers/sec21.pdf) for more details). The others come from [SmartBugs repository](https://github.com/smartbugs/smartbugs).
+* ``benchmarks/leaking_suicidal``: This folder contains 104 Solidity smart contracts with Ether-leaking and Suicidal vulnerabilities. The contracts whose names end with ``_N.sol`` (where ``N`` is one of 1,2,3) are the ones constructed by us (see [our Security '21 paper](http://prl.korea.ac.kr/~ssb920/papers/sec21.pdf) for more details). The others come from [SmartBugs repository](https://github.com/smartbugs/smartbugs).
 
 * ``metadata``: This folder contains metadata for contracts such as names of main contracts.
 
