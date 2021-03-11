@@ -11,7 +11,8 @@ The 60 contracts used in [our S&P '20 paper](https://arxiv.org/abs/1908.11227) a
 * ``benchmarks/zeus``: This folder contains 25 Solidity smart contracts from public dataset provided
 by the authors of [Zeus](http://pages.cpsc.ucalgary.ca/~joel.reardon/blockchain/readings/ndss2018_09-1_Kalra_paper.pdf).
 
-* ``benchmarks/leaking_suicidal``: This folder contains 104 Solidity smart contracts with Ether-leaking and Suicidal vulnerabilities. The contracts whose names end with ``_N.sol`` (where ``N`` is one of 1,2,3) are the ones constructed by us (see [our Security '21 paper](http://prl.korea.ac.kr/~ssb920/papers/sec21.pdf) for more details). The others come from [SmartBugs repository](https://github.com/smartbugs/smartbugs).
+* ``benchmarks/leaking_suicidal``: This folder contains 104 Solidity smart contracts with Ether-leaking and Suicidal vulnerabilities.
+The contracts whose names start with ``0x`` and end with ``_N.sol`` (where ``N`` is one of 1,2,3) are the ones constructed by us (see [our Security '21 paper](http://prl.korea.ac.kr/~ssb920/papers/sec21.pdf) for more details). The others come from [SmartBugs repository](https://github.com/smartbugs/smartbugs).
 
 * ``metadata``: This folder contains metadata for contracts such as names of main contracts.
 
