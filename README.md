@@ -18,6 +18,8 @@ The contracts whose names start with ``0x`` and end with ``_N.sol`` (where ``N``
 
 * ``labels``: This folder contains ground truths for CVE-reported vulnerabilities, and Ether-leaking and Suicidal vulnerabilities.
 
+* ``assets``: The directory ``split`` in this folder contains fold information in [our Security '21 paper](http://prl.korea.ac.kr/~ssb920/papers/sec21.pdf).
+
 
 ## Related Publications
 * **VeriSmart: A Highly Precise Safety Verifier for Ethereum Smart Contracts** <br/>
