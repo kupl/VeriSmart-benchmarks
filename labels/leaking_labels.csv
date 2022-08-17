@@ -88,7 +88,7 @@ wallet_04_confused_sign,31,,withdraw,
 0xa78a974b487357ad5c17a072dfee4d31b839b331_1,99:154:166,210,sendAll:smallCheckOut:bigCheckOut,kill
 0xa78a974b487357ad5c17a072dfee4d31b839b331_2,99:154:166,210,sendAll:smallCheckOut:bigCheckOut,kill
 0xfbfa60a21b423cb364de616a37464b61c1bc4c88_1,188:444,188,kill:withdrawFunds,kill
-0xfbfa60a21b423cb364de616a37464b61c1bc4c88_2,188:444,188,kill:withdrawFunds,kill
+0xfbfa60a21b423cb364de616a37464b61c1bc4c88_2,444,188,withdrawFunds,kill
 0xfbfa60a21b423cb364de616a37464b61c1bc4c88_3,188:444,188,kill:withdrawFunds,kill
 0x95195adFb67f28AcFC07CE09eb496188527C0303_2,,517,,kill
 0x95195adFb67f28AcFC07CE09eb496188527C0303_3,517,517,kill,kill

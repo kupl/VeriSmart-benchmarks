@@ -287,7 +287,7 @@ ID,LINE,VALIDITY,FUCNTION,SP20,SEC21
 2018-14001,41,O,batchTransfer,O,O
 2018-14002,68,O,distribute,O,O
 2018-14003,189,O,batchTransfer,O,O
-2018-14004,239.24,O,transfer_tokens_after_ICO,O,O
+2018-14004,239.240,O,transfer_tokens_after_ICO,O,O
 2018-14005,250.251,O,transferAny,O,O
 2018-14006,88,O,multipleTransfer,O,O
 2018-14063,148,O,increaseApproval,O,O
