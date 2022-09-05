@@ -1,0 +1,9 @@
+shrinkLimit: 1
+testLimit: 500000
+seqLen: 100
+dashboard: false
+checkAsserts: true
+format: text
+coverage: true
+corpusDir: "corpus"
+cryticArgs: ["--solc","solc-0.4.21"]
